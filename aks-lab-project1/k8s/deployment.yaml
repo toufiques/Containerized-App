@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aks-lab-app
+  labels:
+    app: aks-lab-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aks-lab-app
+  template:
+    metadata:
+      labels:
+        app: aks-lab-app
+    spec:
+      containers:
+        - name: aks-lab-app
+          # __IMAGE__ is substituted by the app-deploy.yml workflow at deploy
+          # time - do not edit this line directly.
+          image: __IMAGE__
+          ports:
+            - containerPort: 8080
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20

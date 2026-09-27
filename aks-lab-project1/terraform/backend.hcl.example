@@ -1,0 +1,10 @@
+# Copy this file to backend.hcl (gitignored) and fill in the values
+# printed by scripts/bootstrap-state-storage.sh.
+#
+# Usage:
+#   terraform init -backend-config=backend.hcl
+
+resource_group_name  = "rg-tfstate-akslab"
+storage_account_name = "sttfstateakslabXXXXX"
+container_name       = "tfstate"
+key                  = "project1.terraform.tfstate"
