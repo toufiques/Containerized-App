@@ -237,12 +237,3 @@ cleanly:
 ```bash
 az ad app delete --id <github_actions_client_id>
 ```
-
----
-
-## What's deliberately left out of v1
-
-- Ingress controller, TLS, your GoDaddy domain → Project 2
-- Pulumi (re-implementing this same stack for comparison) → Project 2/3
-- Jenkins as an alternative to GitHub Actions → later project
-- Namespace-scoped RBAC, alerting rules, custom Grafana dashboards

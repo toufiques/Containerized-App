@@ -32,3 +32,4 @@ output "subscription_id" {
   description = "Set this as the AZURE_SUBSCRIPTION_ID secret in your GitHub repo"
   value       = data.azurerm_client_config.current.subscription_id
 }
+
